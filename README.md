@@ -62,7 +62,32 @@ ai-projects-local-codex
 
 ## Optional systemd
 
-Use `systemd/ai-projects-runner.service.example` as a starting point if you want
-the runner to start on login or boot. Adjust `User`, `WorkingDirectory`, and
-paths before installing it.
+For automatic startup, install a user-level systemd service:
 
+```bash
+./scripts/install-user-service.sh
+```
+
+If `./scripts/run-runner.sh` is currently running in a terminal, stop it before
+starting the service. Then run:
+
+```bash
+systemctl --user start ai-projects-runner.service
+systemctl --user status ai-projects-runner.service
+```
+
+User services normally start when the user logs in. To start the runner at boot
+even before login, enable lingering once:
+
+```bash
+sudo loginctl enable-linger "$USER"
+```
+
+To remove the service:
+
+```bash
+./scripts/uninstall-user-service.sh
+```
+
+`systemd/ai-projects-runner.service.example` is kept as a system-level service
+reference if you prefer managing the runner under `/etc/systemd/system`.
