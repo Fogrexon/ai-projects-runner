@@ -1,0 +1,6 @@
+.env
+.runner/
+actions-runner/
+*.tar.gz
+*.log
+

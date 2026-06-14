@@ -1,0 +1,16 @@
+[Unit]
+Description=GitHub Actions self-hosted runner for Fogrexon/ai-projects
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=fogrex-flow
+WorkingDirectory=/home/fogrex-flow/projects/ai-projects-runner/.runner
+ExecStart=/home/fogrex-flow/projects/ai-projects-runner/.runner/run.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
