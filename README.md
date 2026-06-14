@@ -68,6 +68,14 @@ For automatic startup, install a user-level systemd service:
 ./scripts/install-user-service.sh
 ```
 
+The installer detects `codex` and writes both `CODEX_BIN` and a minimal `PATH`
+into the service. If `codex` is not discoverable from your shell, pass it
+explicitly:
+
+```bash
+CODEX_BIN=/path/to/codex ./scripts/install-user-service.sh
+```
+
 If `./scripts/run-runner.sh` is currently running in a terminal, stop it before
 starting the service. Then run:
 
